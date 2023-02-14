@@ -1,0 +1,19 @@
+
+name: Send a New YouTube Playlist Video to Discord Channel
+on:
+  youtube:
+    playlist_id:
+      - PLPSnntNLdJFFd9vVFBPY1K7HI_77wT1vf
+jobs:
+  discord:
+    name: Send a message to discord
+    runs-on: ubuntu-latest
+    steps:
+      - name: Discord notification
+        env:
+          DISCORD_WEBHOOK2: ${{ secrets.DISCORD_WEBHOOK2 }}
+          DISCORD_USERNAME: MAGIC STRAWBERRY SOUND
+          DISCORD_AVATAR: ${{ secrets.DISCORD_AVATAR }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: "`MAGIC STRAWBERRY SOUND - YouTube - Playlist - MUSIC VIDEO`'\n'**${{on.youtube.outputs.title}}**'\n'${{on.youtube.outputs.link}}"
